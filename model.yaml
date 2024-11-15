@@ -1,0 +1,18 @@
+    UserInfo:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          readOnly: true
+        data:
+          type: string
+          readOnly: true
+      required:
+      - data
+      - email
+      - username
