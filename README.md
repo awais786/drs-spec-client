@@ -49,25 +49,24 @@ ensuring that they are automatically used in requests.
 
 # Initialize the client
 ```
-base_url = "http://local.edly.io:8000/"
-client_id = 'client-id'
-client_secret = 'client-secret'
+from customclient.openapi_client.api.courses_api import CoursesApi
+from customclient.openapi_client.models.user_info import UserInfo
+from customclient import openapi_client
 
-payload = {
-    'client_id': client_id,
-    'client_secret': client_secret,
-    'grant_type': 'client_credentials',
-    'token_type': 'jwt'
-}
+access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJvcGVuZWR4"
 
-headers = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}
-client = Client(base_url=base_url, headers=headers)
-token = client.retrieve_access_token(auth_url='oauth2/access_token', data=payload)
-print("Authentication works !!!!!!!! ")
-
-client = AuthenticatedClient(
-    base_url=base_url,
-    token=token
+configuration = openapi_client.Configuration(
+    api_key_prefix="JWT", host="http://local.edly.io:8000", access_token=access_token
 )
+api_client = openapi_client.ApiClient(
+    configuration=configuration,  header_name="Authorization", header_value=f"JWT {access_token}"
+)
+
+api_instance = CoursesApi(api_client)
+course_id = 'course-v1:edx+cs202+2101'
+userinfo = UserInfo(username='admin', email='aa@aa.com', data='test')
+
+resp = api_instance.courses_instructor_api_users_info2_create(course_id=course_id, user_info=userinfo)
+print(resp)
 
 ```
