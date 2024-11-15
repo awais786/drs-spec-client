@@ -1,6 +1,6 @@
 # OpenAPI Client Generation for LMS Instructor APIs
 
-This guide explains how to generate an OpenAPI 3 schema for LMS instructor APIs and use the generated client to interact with the APIs. We're leveraging `drf-spectacular` in Django Rest Framework (DRF) and `openapi-python-client` to automate the process.
+This guide explains how to generate an OpenAPI 3 schema for LMS instructor APIs and use the generated client to interact with the APIs. We're leveraging `drf-spectacular` in Django Rest Framework (DRF) and `openapitools/openapi-generator-cli` to automate the process.
 
 ## Prerequisites
 
