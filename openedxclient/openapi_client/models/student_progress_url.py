@@ -83,11 +83,11 @@ class StudentProgressUrl(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
+        _obj ={
             "unique_student_identifier": obj.get("unique_student_identifier"),
             "course_id": obj.get("course_id"),
             "progress_url": obj.get("progress_url")
-        })
+        }
         return _obj
 
 
