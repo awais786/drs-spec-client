@@ -28,16 +28,20 @@ print(api_instance.courses_instructor_api_get_student_progress_url_create(
     course_id=course_id,
     student_progress_url=student_progress_url_data
 ))
+
 modify_access_data = {
     "unique_student_identifier": "admin",
     "action": "allow",
     "rolename": "instructor"
 }
+
 # Convert the dictionary into a Pydantic model instance
 access_instance = Access(**modify_access_data)
+
 response = api_instance.courses_instructor_api_modify_access_create(
     course_id="course-v1:edx+cs202+2101",  # Replace with actual course_id
     access=access_instance  # Pass the dictionary with correct name
 )
+
 print(response.to_json())
 
