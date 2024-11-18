@@ -28,7 +28,7 @@ from pydantic import SecretStr
 
 from openedxclient.openapi_client.configuration import Configuration
 from openedxclient.openapi_client.api_response import ApiResponse, T as ApiResponseT
-import openapi_client.models
+import openedxclient.openapi_client.models
 from openedxclient.openapi_client import rest
 from openedxclient.openapi_client.exceptions import (
     ApiValueError,
@@ -449,7 +449,7 @@ class ApiClient:
             if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
-                klass = getattr(openapi_client.openapi_client.models, klass)
+                klass = getattr(openedxclient.openapi_client.models, klass)
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
