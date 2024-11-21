@@ -81,14 +81,6 @@ class Access(BaseModel):
         if obj is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate({
-            "unique_student_identifier": obj.get("unique_student_identifier"),
-            "rolename": obj.get("rolename"),
-            "action": obj.get("action")
-        })
-        return _obj
-
+        return obj
+        
 
